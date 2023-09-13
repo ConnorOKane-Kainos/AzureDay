@@ -25,6 +25,14 @@ resource "azurerm_virtual_network" "citi_net" {
 
 resource azurerm_subnet "subnet_aks"{
   virtual_network_name = azurerm_virtual_network.citi_net.name
-  name = "subnet_aks"
+  name = "${var.resource_group_name}-aks"
   resource_group_name = data.azurerm_resource_group.resource_group.name 
+  address_prefixes = [ "10.0.1.0/26" ]
+}
+
+resource azurerm_subnet "citi_app_sub"{
+  virtual_network_name = azurerm_virtual_network.citi_net.name
+  name = "${var.resource_group_name}-app"
+  resource_group_name = data.azurerm_resource_group.resource_group.name
+  address_prefixes = [ "10.0.2.0/26" ]
 }
