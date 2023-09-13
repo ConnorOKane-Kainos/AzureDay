@@ -12,11 +12,19 @@ provider "azurerm" {
     features {}
 }
 
-# data "azurerm_resource_group" "resource_group" {
-#   name     = "${var.resource_group_name}"
-# }
+data "azurerm_resource_group" "resource_group" {
+  name     = "${var.resource_group_name}"
+}
 
-# resource "azurerm_virtual_private_network" "citi_net" {
-#     location = var.location
-#     resource_group = azurerm_resource_group.resource_group.id 
-# }
+resource "azurerm_virtual_network" "citi_net" {
+    location = var.location
+    resource_group_name = data.azurerm_resource_group.resource_group.name
+    name = "${var.resource_group_name}-vpc"
+    address_space = ["10.0.0.0/20"]
+}
+
+resource azurerm_subnet "subnet_aks"{
+  virtual_network_name = azurerm_virtual_network.citi_net.name
+  name = "subnet_aks"
+  resource_group_name = data.azurerm_resource_group.resource_group.name 
+}
