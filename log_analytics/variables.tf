@@ -1,5 +1,5 @@
 variable "resource_group_name" {
-    default = "citilads-rg"
+    default = "citilads"
 
 }
 variable "location" {
