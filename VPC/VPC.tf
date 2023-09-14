@@ -36,3 +36,8 @@ resource azurerm_subnet "citi_app_sub"{
   resource_group_name = data.azurerm_resource_group.resource_group.name
   address_prefixes = [var.subnet_address_prefix]
 }
+
+resource "azurerm_resource_group" "vpc_resource_group" {
+  name = "${var.name}-vpc-rg"
+  location = "${var.location}"
+}
