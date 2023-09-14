@@ -40,3 +40,8 @@ variable "ssh_public_key" {
 
 variable "aks_admins_group_object_id" {
 }
+
+variable "subnet_aks" {
+  default = "citilads"
+
+}

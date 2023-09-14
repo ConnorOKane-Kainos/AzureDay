@@ -19,5 +19,5 @@ resource "azurerm_log_analytics_solution" "Log_Analytics_Solution_ContainerInsig
     }
 }
 data "azurerm_resource_group" "resource_group" {
-  name     = "${var.resource_group_name}"
+  name     = "${var.resource_group_name}-rg"
 }
