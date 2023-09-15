@@ -52,7 +52,7 @@ jobs:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./AKS2"
-        args: '-var-file ./terraform.tfvars'
+        args: '-var-file ./AKS2/terraform.tfvars'
  
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
@@ -61,5 +61,5 @@ jobs:
         tf_actions_version: ${{ env.TF_VERSION }}
         tf_actions_subcommand: 'apply'
         tf_actions_working_dir: "./AKS2"
-        args: '-var-file ./terraform.tfvars'
+        args: '-var-file ./AKS2/terraform.tfvars'
       
