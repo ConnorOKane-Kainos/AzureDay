@@ -64,22 +64,22 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     type = "SystemAssigned"
   }
   oms_agent {
-      
-      log_analytics_workspace_id = data.azurerm_log_analytics_workspace.workspace.id
+
+    log_analytics_workspace_id = data.azurerm_log_analytics_workspace.workspace.id
   }
   ingress_application_gateway {
-      
-      subnet_id = data.azurerm_subnet.appgwsubnet.id
-    }
-    azure_active_directory_role_based_access_control {
-      managed = true
-      admin_group_object_ids = [var.aks_admins_group_object_id]
-    }
+
+    subnet_id = data.azurerm_subnet.appgwsubnet.id
+  }
+  azure_active_directory_role_based_access_control {
+    managed                = true
+    admin_group_object_ids = [var.aks_admins_group_object_id]
+  }
   network_profile {
     load_balancer_sku = "standard"
     network_plugin    = "azure"
-    network_policy = "azure"
-}
+    network_policy    = "azure"
+  }
 }
 
 data "azurerm_resource_group" "node_resource_group" {
@@ -111,8 +111,8 @@ resource "azurerm_role_assignment" "acr_pull" {
     azurerm_kubernetes_cluster.k8s
   ]
 }
-data azurerm_kubernetes_cluster "clusterdata" {
-  name = azurerm_kubernetes_cluster.k8s.name
+data "azurerm_kubernetes_cluster" "clusterdata" {
+  name                = azurerm_kubernetes_cluster.k8s.name
   resource_group_name = data.azurerm_resource_group.resource_group.name
   depends_on = [
     azurerm_kubernetes_cluster.k8s
