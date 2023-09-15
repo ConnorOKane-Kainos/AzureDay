@@ -62,3 +62,4 @@ jobs:
         tf_actions_subcommand: 'apply'
         tf_actions_working_dir: "./AKS2"
         args: '-var-file ./terraform.tfvars'
+      
